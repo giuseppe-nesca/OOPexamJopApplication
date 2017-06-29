@@ -5,7 +5,7 @@ import java.util.*;
 public class Position {
 	
 	private String name;
-	Map<String, Skill> skills = new HashMap<String, Skill>();
+	private Map<String, Skill> skills = new HashMap<String, Skill>();
 
 	public Position(String name, Collection<Skill>skills){
 		this.name = name;

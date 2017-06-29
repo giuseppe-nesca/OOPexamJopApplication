@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public class Skill {
 
-	String name;
-	public Map<String, Position> positions = new HashMap<>();
+	private String name;
+	private Map<String, Position> positions = new HashMap<>();
 	
 	public Skill(String name){
 		this.name = name;
