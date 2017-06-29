@@ -90,10 +90,28 @@ public class HandleApplications {
 	}
 	
 	public SortedMap<String, Long> skill_nApplicants() {
-		return null;
+		
+		Map<String,Long > tmp = 
+				applicants.values().stream()
+				.flatMap(a -> a.getskills().stream())
+				.sorted(Comparator.comparing(Skill::getName))
+				.collect(Collectors.groupingBy(Skill::getName, Collectors.counting()));
+
+		return new TreeMap<String, Long>(tmp);
 	}
 	public String maxPosition() {
-		return null;
+		Optional<Position> result = 
+		positions.values().stream()
+		//.sorted(Comparator.comparing(Position::getApplicantsNumber, Comparator.reverseOrder()))
+		.max(Comparator.comparing(Position::getApplicantsNumber));
+		
+		try {
+			return result.get().getName();
+		} catch (NoSuchElementException e) {
+			System.err.println("max has returned null element");
+			return null;
+		}
+		
 	}
 }
 

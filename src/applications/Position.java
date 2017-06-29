@@ -64,6 +64,10 @@ public class Position {
 		return skills.size();
 	}
 	
+	public int getApplicantsNumber(){
+		return applicants.size();
+	}
+	
 	public void setWinner(String winner){
 		this.winner = winner;
 	}

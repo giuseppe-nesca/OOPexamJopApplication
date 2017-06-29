@@ -8,6 +8,7 @@ public class Skill {
 
 	private String name;
 	private Map<String, Position> positions = new HashMap<>();
+	private int numeroRichiedenti = 0;
 	
 	public Skill(String name){
 		this.name = name;
