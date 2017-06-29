@@ -66,12 +66,22 @@ public class HandleApplications {
 		if (resultSet.isEmpty()) {
 			return "";
 		}
-		return resultSet.toString();
+		
+		StringBuilder resultString = new StringBuilder();
+		Applicant applicant = applicants.get(applicantName);
+		resultSet.forEach( s -> {
+			String string = s + ":" + applicant.getLvlsMap().get(s);
+			if (resultString.length() != 0) resultString.append(",");
+			resultString.append(string);
+		} );
+		
+		return resultString.toString();
 	}
 	
 	public void enterApplication(String applicantName, String positionName) throws ApplicationException {
 		if (!applicants.containsKey(applicantName)) { throw new ApplicationException();	}
 		if (!positions.containsKey(positionName)) { throw new ApplicationException(); }
+		if (applicants.get(applicantName).getRequestedPosition() != null ) {throw new ApplicationException();}
 		Applicant applicant = applicants.get(applicantName);
 		Position position = positions.get(positionName);
 		if(!position.checkSkills(applicant.getSkillsMap())){throw new ApplicationException();}

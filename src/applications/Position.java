@@ -29,6 +29,7 @@ public class Position {
 	
 	public void addApplicant(Applicant applicant){
 		applicants.put(applicant.getName(), applicant);
+		applicant.setRequestedPosition(this);
 	}
 	
 	public String getWinner() {
