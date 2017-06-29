@@ -17,7 +17,13 @@ public class Applicant {
 		this.lvls = lvls;
 	}
 	
+	public String getName(){return name;}
+	
 	public Collection<Skill> getskills(){
 		return skills.values();
+	}
+	
+	public Map<String,Skill> getSkillsMap(){
+		return skills;
 	}
 }

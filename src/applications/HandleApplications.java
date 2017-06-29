@@ -70,7 +70,12 @@ public class HandleApplications {
 	}
 	
 	public void enterApplication(String applicantName, String positionName) throws ApplicationException {
-		
+		if (!applicants.containsKey(applicantName)) { throw new ApplicationException();	}
+		if (!positions.containsKey(positionName)) { throw new ApplicationException(); }
+		Applicant applicant = applicants.get(applicantName);
+		Position position = positions.get(positionName);
+		if(!position.checkSkills(applicant.getSkillsMap())){throw new ApplicationException();}
+		position.addApplicant(applicant);
 	}
 	
 	public int setWinner(String applicantName, String positionName) throws ApplicationException {
