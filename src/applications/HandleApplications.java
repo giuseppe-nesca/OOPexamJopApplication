@@ -79,7 +79,14 @@ public class HandleApplications {
 	}
 	
 	public int setWinner(String applicantName, String positionName) throws ApplicationException {
-		return 0;
+		Position position = positions.get(positionName);
+		if(!position.checkApplicant(applicantName)) throw new ApplicationException();
+		if(position.getWinner()!=null) throw new ApplicationException();
+		
+		int n = position.checkPossibleWinner(applicantName);
+		if( n <= position.getSkillsNumber()*6) throw new ApplicationException();
+		position.setWinner(applicantName);
+		return n;
 	}
 	
 	public SortedMap<String, Long> skill_nApplicants() {

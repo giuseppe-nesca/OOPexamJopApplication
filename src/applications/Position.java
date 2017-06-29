@@ -3,13 +3,12 @@ package applications;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.sun.javafx.geom.AreaOp.AddOp;
-
 public class Position {
 	
 	private String name;
 	private Map<String, Skill> skills = new HashMap<String, Skill>();
 	private Map<String, Applicant> applicants = new HashMap<String, Applicant>();
+	private String winner = null;
 
 	public Position(String name, Collection<Skill>skills){
 		this.name = name;
@@ -33,7 +32,7 @@ public class Position {
 	}
 	
 	public String getWinner() {
-		return null; 
+		return winner; 
 	}
 	
 	public boolean checkSkills(Map<String, Skill>appSkills){
@@ -43,5 +42,29 @@ public class Position {
 			}
 		}
 		return true;
+	}
+	
+	public int checkPossibleWinner(String applicantName){
+		int n = 0;
+		Applicant applicant = applicants.get(applicantName);
+		
+		for (String key : skills.keySet()) {
+			n += applicant.getLvlsMap().get(key);
+		}
+		
+		return n;
+	}
+	
+	public boolean checkApplicant(String applicantName){
+		if(applicants.containsKey(applicantName))return true;
+		else return false;
+	}
+	
+	public int getSkillsNumber(){
+		return skills.size();
+	}
+	
+	public void setWinner(String winner){
+		this.winner = winner;
 	}
 }

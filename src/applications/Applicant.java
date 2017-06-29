@@ -3,7 +3,6 @@ package applications;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.management.loading.PrivateMLet;
 
 public class Applicant {
 
@@ -25,5 +24,9 @@ public class Applicant {
 	
 	public Map<String,Skill> getSkillsMap(){
 		return skills;
+	}
+	
+	public Map<String, Integer> getLvlsMap(){
+		return lvls;
 	}
 }
